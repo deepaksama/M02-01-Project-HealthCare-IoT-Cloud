@@ -8,7 +8,7 @@ class DynamoDBUtil:
         self._dynamodb = boto3.resource('dynamodb')
         self._table = None
 
-    def create_table_if_doesnot_exists(self, table_name, partition_key, partition_key_type, sort_key, sort_key_type):
+    def create_table_if_not_exist(self, table_name, partition_key, partition_key_type, sort_key, sort_key_type):
 
         if self.is_table_exits(table_name):
             print('Table already exists')

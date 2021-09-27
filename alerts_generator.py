@@ -81,7 +81,7 @@ class AlertsGenerator:
             aggregate_data, datatype)
 
         # Create alerts table for respective datatype
-        self._db_util.create_table_if_doesnot_exists(
+        self._db_util.create_table_if_not_exist(
             alerts_table_name, 'deviceid', 'S', 'timestamp', 'S')
 
         # Push alerts into alerts table
