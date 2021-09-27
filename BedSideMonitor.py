@@ -48,7 +48,7 @@ def publishBedSideMonitorData(loopCount, deviceId):
         if loopCount % PublishFreqTemperature == 0:
             value = float(random.normalvariate(99, 1.5))
             value = round(value, 1)
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'Temperature'
             message['value'] = value
@@ -57,7 +57,7 @@ def publishBedSideMonitorData(loopCount, deviceId):
 
         if loopCount % PublishFreqOxygen == 0:
             value = int(random.normalvariate(90,3.0))
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'SPO2'
             message['value'] = value
@@ -66,7 +66,7 @@ def publishBedSideMonitorData(loopCount, deviceId):
 
         if loopCount % PublishFreqHeartRate == 0:
             value = int(random.normalvariate(85,12))
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'HeartRate'
             message['value'] = value
