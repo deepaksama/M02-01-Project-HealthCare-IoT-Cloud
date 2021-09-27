@@ -36,5 +36,5 @@
 * Tables generated after running alerts generator script
     ![](.\screenshots\alert_tables_generated.PNG)
 * Samaple alerts data
-    ![](.\screenshots\alert_data_for_spo2.PNG)
+    ![](screenshots\alert_data_for_spo2.PNG)
 
