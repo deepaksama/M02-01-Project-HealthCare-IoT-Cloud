@@ -1,14 +1,14 @@
 # Sensor data table
-TABLE_BSM_DATA = "BedsideMonitorData"
+TABLE_BSM_DATA = "bsm_data"
 # Aggregate data tables
-TABLE_TEMPERATURE_AGGREGATE_DATA = "TemperatureAggregateData"
-TABLE_SPO2_AGGREGATE_DATA = "SPO2AggregateData"
-TABLE_HEARTRATE_AGGREGATE_DATA = "HeartrateAggregateData"
+TABLE_TEMPERATURE_AGGREGATE_DATA = "temperature_aggregate_data"
+TABLE_SPO2_AGGREGATE_DATA = "spo2_aggregate_data"
+TABLE_HEARTRATE_AGGREGATE_DATA = "heartrate_aggregate_data"
 
 # Alerts tables
-TABLE_TEMPERATURE_ALERTS = "BSMTemperatureAlerts"
-TABLE_SPO2_ALERTS = "BSMSPO2Alerts"
-TABLE_HEARTRATE_ALERTS = "BSMHeartrateAlerts"
+TABLE_TEMPERATURE_ALERTS = "bsm_temperature_alerts"
+TABLE_SPO2_ALERTS = "bsm_spo2_alerts"
+TABLE_HEARTRATE_ALERTS = "bsm_heartrate_alerts"
 
 # Datatypes
 DATATYPE_TEMPERATURE = 'Temperature'
