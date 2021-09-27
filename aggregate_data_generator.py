@@ -132,11 +132,11 @@ class AggregateDataGenerator:
         db_util = DynamoDBUtil()
 
         # Create aggregate data tables if does not exist
-        db_util.create_table_if_doesnot_exists(
+        db_util.create_table_if_not_exist(
             app_constants.TABLE_TEMPERATURE_AGGREGATE_DATA, "deviceid", 'S', "timestamp", 'S')
-        db_util.create_table_if_doesnot_exists(
+        db_util.create_table_if_not_exist(
             app_constants.TABLE_SPO2_AGGREGATE_DATA, "deviceid", 'S', "timestamp", 'S')
-        db_util.create_table_if_doesnot_exists(
+        db_util.create_table_if_not_exist(
             app_constants.TABLE_HEARTRATE_AGGREGATE_DATA, "deviceid", 'S', "timestamp", 'S')
 
         # Bulk insert aggregate data into tables
