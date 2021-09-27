@@ -41,14 +41,14 @@ def customCallback(client, userdata, message):
     print("--------------\n\n")
 
 
-def publishBedSideMonitorData(loopCount):
+def publishBedSideMonitorData(loopCount, deviceId):
     message = {}
-    message['deviceid'] = 'BSM_G101'
+    message['deviceid'] = deviceId
     try:
         if loopCount % PublishFreqTemperature == 0:
             value = float(random.normalvariate(99, 1.5))
             value = round(value, 1)
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'Temperature'
             message['value'] = value
@@ -57,7 +57,7 @@ def publishBedSideMonitorData(loopCount):
 
         if loopCount % PublishFreqOxygen == 0:
             value = int(random.normalvariate(90,3.0))
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'SPO2'
             message['value'] = value
@@ -66,7 +66,7 @@ def publishBedSideMonitorData(loopCount):
 
         if loopCount % PublishFreqHeartRate == 0:
             value = int(random.normalvariate(85,12))
-            timestamp = str(datetime.datetime.now())
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
             message['timestamp'] = timestamp
             message['datatype'] = 'HeartRate'
             message['value'] = value
@@ -78,8 +78,6 @@ def publishBedSideMonitorData(loopCount):
 
     except publishTimeoutException:
         print("Unstable connection detected. Wait for {} seconds. No data is pushed on IoT core from {} to {}.".format(DEFAULT_OPERATION_TIMEOUT_SEC, (datetime.datetime.now() - datetime.timedelta(seconds=DEFAULT_OPERATION_TIMEOUT_SEC)), datetime.datetime.now()))
-
-
 
 
 # Read in command-line parameters
@@ -98,6 +96,7 @@ parser.add_argument("-m", "--mode", action="store", dest="mode", default="both",
                     help="Operation modes: %s"%str(AllowedActions))
 parser.add_argument("-M", "--message", action="store", dest="message", default="Hello World!",
                     help="Message to publish")
+parser.add_argument("-d", "--deviceId", action="store", dest="deviceId", help="Simulating device Id")
 
 args = parser.parse_args()
 host = args.host
@@ -108,6 +107,7 @@ port = args.port
 useWebsocket = args.useWebsocket
 clientId = args.clientId
 topic = args.topic
+deviceId = args.deviceId
 
 if args.mode not in AllowedActions:
     parser.error("Unknown --mode option %s. Must be one of %s" % (args.mode, str(AllowedActions)))
@@ -171,7 +171,7 @@ now = time.time()
 while True:
     try :
         if args.mode == 'both' or args.mode == 'publish':
-            scheduler.enterabs(now+loopCount, 1, publishBedSideMonitorData, (loopCount,))
+            scheduler.enterabs(now+loopCount, 1, publishBedSideMonitorData, (loopCount,deviceId))
             loopCount += 1
             scheduler.run()
     except KeyboardInterrupt:
