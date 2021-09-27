@@ -1,16 +1,8 @@
 from datetime import datetime, timedelta
-from decimal import Decimal
-import decimal
-import time
-from dynamodb_util import DynamoDBUtil
-import json
-import app_constants
-
 from aggregate_data_generator import AggregateDataGenerator
 
-
 def main():
-    start_time = (datetime.now() - timedelta(hours=8)
+    start_time = (datetime.now() - timedelta(hours=10)
                   ).strftime('%Y-%m-%dT%H:%M:%SZ')
     end_time = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
 

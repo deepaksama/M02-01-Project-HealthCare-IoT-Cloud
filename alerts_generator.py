@@ -34,14 +34,14 @@ class AlertsGenerator:
         breach_conditions = []
         alerts = []
         for entry in data:
-            if entry['minimum'] < config_data['min'] or entry['maximum'] > config_data['max']:
+            if entry['average'] < config_data['min'] or entry['average'] > config_data['max']:
                 # Capture first anomaly entry
                 if not first_anomaly_entry:
                     first_anomaly_entry = entry
                     first_anomaly_entry['breach_condition'] = ''
-                    if entry['minimum'] < config_data['min']:
+                    if entry['average'] < config_data['min']:
                         breach_conditions.append('Min')
-                    if entry['maximum'] > config_data['max']:
+                    if entry['average'] > config_data['max']:
                         breach_conditions.append('Max')
                 deviation_counter = deviation_counter + 1
             else:
